@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Employee Manager</title>
+    <title>Colaboradores</title>
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -13,45 +13,45 @@
             options.dataType = "json";
             options.success = function (data) {
                 data.forEach(function (element) {
-                    $("#employeeid").append("<option>"
+                    $("#id").append("<option>"
                         + element.employeeID + "</option>");
                 });
             };
             options.error = function () {
-                $("#msg").html("Error while calling the Web API!");
+                $("#msg").html("Erro ao chamar a API!");
             };
             $.ajax(options);
 
 
 
-            $("#employeeid").change(function () {
+            $("#id").change(function () {
                 var options = {};
                 options.url = "/api/employee/" +
-                    $("#employeeid").val();
+                    $("#id").val();
                 options.type = "GET";
                 options.dataType = "json";
                 options.success = function (data) {
-                    $("#firstname").val(data.firstName);
-                    $("#lastname").val(data.lastName);
-                    $("#city").val(data.city);
+                    $("#nome").val(data.firstName);
+                    $("#sobrenome").val(data.lastName);
+                    $("#cidade").val(data.city);
                 };
                 options.error = function () {
-                    $("#msg").html("Error while calling the Web API!");
+                    $("#msg").html("Erro ao chamar a API!");
                 };
                 $.ajax(options);
             });
 
 
 
-            $("#insert").click(function () {
+            $("#incluir").click(function () {
                 var options = {};
                 options.url = "/api/employee";
                 options.type = "POST";
 
                 var obj = {};
-                obj.firstName = $("#firstname").val();
-                obj.lastName = $("#lastname").val();
-                obj.city = $("#city").val();
+                obj.firstName = $("#nome").val();
+                obj.lastName = $("#sobrenome").val();
+                obj.city = $("#cidade").val();
 
                 options.data = JSON.stringify(obj);
                 options.contentType = "application/json";
@@ -61,24 +61,24 @@
                     $("#msg").html(msg);
                 };
                 options.error = function () {
-                    $("#msg").html("Error while calling the Web API!");
+                    $("#msg").html("Erro ao chamar a API!");
                 };
                 $.ajax(options);
             });
 
 
 
-            $("#update").click(function () {
+            $("#atualizar").click(function () {
                 var options = {};
                 options.url = "/api/employee/"
-                    + $("#employeeid").val();
+                    + $("#id").val();
                 options.type = "PUT";
 
                 var obj = {};
-                obj.employeeID = $("#employeeid").val();
-                obj.firstName = $("#firstname").val();
-                obj.lastName = $("#lastname").val();
-                obj.city = $("#city").val();
+                obj.employeeID = $("#id").val();
+                obj.firstName = $("#nome").val();
+                obj.lastName = $("#sobrenome").val();
+                obj.city = $("#cidade").val();
 
                 options.data = JSON.stringify(obj);
                 options.contentType = "application/json";
@@ -87,7 +87,7 @@
                     $("#msg").html(msg);
                 };
                 options.error = function () {
-                    $("#msg").html("Error while calling the Web API!");
+                    $("#msg").html("Erro ao chamar a API!");
                 };
                 $.ajax(options);
             });
@@ -95,17 +95,17 @@
 
 
 
-            $("#delete").click(function () {
+            $("#excluir").click(function () {
                 var options = {};
                 options.url = "/api/employee/"
-                    + $("#employeeid").val();
+                    + $("#id").val();
                 options.type = "DELETE";
                 options.dataType = "html";
                 options.success = function (msg) {
                     $("#msg").html(msg);
                 };
                 options.error = function () {
-                    $("#msg").html("Error while calling the Web API!");
+                    $("#msg").html("Erro ao chamar a API!");
                 };
                 $.ajax(options);
             });
@@ -115,35 +115,35 @@
     </script>
 </head>
 <body>
-<h1>Employee Manager</h1>
+<h1>Colaboradores</h1>
 <form>
     <table border="1" cellpadding="10">
         <tr>
-            <td>Employee ID :</td>
+            <td>Colaborador ID :</td>
             <td>
-                <select id="employeeid"></select>
+                <select id="id"></select>
             </td>
         </tr>
         <tr>
-            <td>First Name :</td>
-            <td><input id="firstname" type="text" /></td>
+            <td>Nome :</td>
+            <td><input id="nome" type="text" /></td>
         </tr>
         <tr>
-            <td>Last Name :</td>
-            <td><input id="lastname" type="text" /></td>
+            <td>Sobrenome :</td>
+            <td><input id="sobrenome" type="text" /></td>
         </tr>
         <tr>
-            <td>City :</td>
-            <td><input id="city" type="text" /></td>
+            <td>Cidade :</td>
+            <td><input id="cidade" type="text" /></td>
         </tr>
         <tr>
             <td colspan="2">
-                <input type="button" id="insert"
-                       value="Insert" />
-                <input type="button" id="update"
-                       value="Update" />
-                <input type="button" id="delete"
-                       value="Delete" />
+                <input type="button" id="incluir"
+                       value="Incluir" />
+                <input type="button" id="atualizar"
+                       value="Atualizar" />
+                <input type="button" id="excluir"
+                       value="Excluir" />
             </td>
         </tr>
     </table>

@@ -39,16 +39,13 @@ namespace WebApiDotNetCore.Controllers
         }
 
 
-
-
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Employee obj)
+        public IActionResult Put([FromBody]Employee obj)
         {
             _db.Entry(obj).State = EntityState.Modified;
             _db.SaveChanges();
             return new ObjectResult("Colaborador alterado com sucesso!");
         }
-
 
 
 

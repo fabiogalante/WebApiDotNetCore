@@ -15,11 +15,5 @@ namespace WebApiDotNetCore.Models
         {
 
         }
-
-        protected override void OnConfiguring
-            (DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=NORTHWND;User ID=sa;Password=Amil2014**;MultipleActiveResultSets=true");
-        }
     }
 }

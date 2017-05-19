@@ -41,9 +41,11 @@ namespace WebApiDotNetCore
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseMvc();
-
             app.UseMvcWithDefaultRoute();
+
+        ;
+
+           
         }
     }
 }
